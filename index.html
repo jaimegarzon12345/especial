@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Para ti ❤️</title>
+
+<style>
+body{
+    margin:0;
+    overflow:hidden;
+    font-family: Arial;
+    background: linear-gradient(120deg, #ff9a9e, #fad0c4, #fbc2eb);
+    background-size: 300% 300%;
+    animation: fondo 8s infinite;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+@keyframes fondo{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+.caja{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    width:90%;
+    max-width:500px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    animation: entrar 1.5s ease;
+}
+
+@keyframes entrar{
+    from{transform:translateY(40px); opacity:0;}
+    to{transform:translateY(0); opacity:1;}
+}
+
+h1{
+    color:#ff4d6d;
+    animation: latir 1.5s infinite;
+}
+
+@keyframes latir{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.1);}
+    100%{transform:scale(1);}
+}
+
+#texto{
+    margin-top:15px;
+    font-size:18px;
+    min-height:40px;
+}
+
+button{
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    border-radius:10px;
+    background:#ff4d6d;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+#mensaje{
+    display:none;
+    margin-top:20px;
+    animation: aparecer 1s ease;
+}
+
+@keyframes aparecer{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+img{
+    width:250px;
+    border-radius:15px;
+    margin-top:10px;
+}
+
+/* corazones */
+.corazon{
+    position:absolute;
+    color:#ff4d6d;
+    font-size:18px;
+    animation: subir 5s linear forwards;
+}
+
+@keyframes subir{
+    from{transform:translateY(100vh); opacity:1;}
+    to{transform:translateY(-10vh); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 MÚSICA (opcional) -->
+<audio autoplay loop>
+    <source src="cancion.mp3" type="audio/mpeg">
+</audio>
+
+<div class="caja">
+
+    <h1>Para ti ❤️</h1>
+
+    <!-- 📸 FOTO -->
+    <img src="foto.jpg">
+
+    <div id="texto"></div>
+
+    <button onclick="mostrar()">Presiona aquí</button>
+
+    <div id="mensaje">
+        <p>
+        Aunque discutamos a veces,<br>
+        sigues siendo mi persona favorita ❤️<br><br>
+        Te quiero mucho.
+        </p>
+    </div>
+
+</div>
+
+<script>
+
+// ✍️ texto animado
+let mensaje = "Solo quería recordarte algo importante...";
+let i = 0;
+
+function escribir(){
+    if(i < mensaje.length){
+        document.getElementById("texto").innerHTML += mensaje.charAt(i);
+        i++;
+        setTimeout(escribir, 50);
+    }
+}
+escribir();
+
+// botón
+function mostrar(){
+    document.getElementById("mensaje").style.display = "block";
+}
+
+// ❤️ corazones
+function crearCorazon(){
+    const c = document.createElement("div");
+    c.classList.add("corazon");
+    c.innerHTML = "❤️";
+
+    c.style.left = Math.random() * window.innerWidth + "px";
+    c.style.fontSize = (10 + Math.random()*20) + "px";
+    c.style.animationDuration = (3 + Math.random()*3) + "s";
+
+    document.body.appendChild(c);
+
+    setTimeout(() => c.remove(), 6000);
+}
+
+setInterval(crearCorazon, 200);
+
+</script>
+
+</body>
+</html>
